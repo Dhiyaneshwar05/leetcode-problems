@@ -23,6 +23,42 @@ class Solution:
         return r[::-1]
 
         """
+        #appr 3 - simple appr -----------
+        class Solution:
+            def addBinary(self, a: str, b: str) -> str:
+                # get longest then pad the other to match length
+                padding_size = max(len(a), len(b))
+                a = a.zfill(padding_size)
+                b = b.zfill(padding_size)
+
+                # iterate from the back and do addition with carry over
+                bit_sum = ''
+                carry_over = 0
+                for i in reversed(range(padding_size)):
+                    case = sum([int(a[i]), int(b[i]), carry_over])
+                    if case == 0:
+                        bit_sum = '0' + bit_sum
+                        carry_over = 0
+                    elif case == 1:
+                        bit_sum = '1' + bit_sum
+                        carry_over = 0
+                    elif case == 2:
+                        bit_sum = '0' + bit_sum
+                        carry_over = 1
+                    elif case == 3:
+                        bit_sum = '1' + bit_sum
+                        carry_over = 1
+                    else:
+                        print("Shouldn't be possible!")
+                # add the carry over in
+                if carry_over > 0:
+                    bit_sum = str(carry_over) + bit_sum
+
+                # return sum
+                return bit_sum
+        """
+
+        """
         #appr 2 without using ord()------------
 
             def addBinary(self, a: str, b: str) -> str:
